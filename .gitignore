@@ -1,0 +1,5 @@
+# Installation files
+*/temp/
+
+# Vim
+*.netrwhist

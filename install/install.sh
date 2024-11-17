@@ -8,14 +8,15 @@ GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
 NC="\033[0m"
 
-DOTFILES_DIR="$HOME/dotfiles"
+# DOTFILES_DIR="$HOME/dotfiles"
+CURRENT_DIR=$(cd "$(dirname "$0")" && pwd)
 
 LINUX_PACKAGES=("build-essential" "software-properties-common")
-COMMON_PACKAGES=("python3" "python3-launchpadlib" "gcc")
-USEFUL_TOOLS=("tmux" "vim" "vim-gui-common" "vim-runtime" "git")
+COMMON_PACKAGES=("gcc" "cmake" "ninja-build" "gettext" "unzip" "curl")
+PROG_LANG=("python3" "python3-launchpadlib" "lua5.4" "liblua5.4-dev")
+USEFUL_TOOLS=("tmux" "git" "vim" "vim-gui-common" "vim-runtime" "fzf" "ripgrep" "fd-find")
 INFOSEC_TOOLS=("gdb")
-PROG_TOOLS=()
-EXTERNAL_INSTALL=("wireshark")
+EXTERNAL_INSTALL=("wireshark" "neovim")
 
 install_packages() {
     local packages=("$@")
@@ -43,16 +44,15 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     install_packages "${LINUX_PACKAGES[@]}"
 fi
 install_packages "${COMMON_PACKAGES[@]}"
+install_packages "${PROG_LANG[@]}"
 
 echo -e "${GREEN}Part 2: Installing extra tools...${NC}"
 install_packages "${USEFUL_TOOLS[@]}"
 install_packages "${INFOSEC_TOOLS[@]}"
-install_packages "${PROG_TOOLS[@]}"
 
 echo -e "${GREEN}Part 3: Installing tools with other scripts...${NC}"
 for script in "${EXTERNAL_INSTALL[@]}"; do
     echo -e "${GREEN}Running $script.sh${NC}"
-    chmod u+x ./"$script.sh"
-    ./"$script.sh" || echo -e "${RED}$script.sh exited with error${NC}"
+    chmod u+x "${CURRENT_DIR}/$script.sh"
+    "${CURRENT_DIR}/$script.sh" || echo -e "${RED}$script.sh exited with error${NC}"
 done
-
