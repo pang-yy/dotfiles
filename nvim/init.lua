@@ -11,4 +11,3 @@ vim.cmd("set t_vb=")
 vim.cmd("set relativenumber")
 
 require("config.lazy")
-vim.cmd.colorscheme "catppuccin"

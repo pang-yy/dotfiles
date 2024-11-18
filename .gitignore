@@ -3,3 +3,6 @@
 
 # Vim
 *.netrwhist
+
+# Nvim
+*/.luarc.json

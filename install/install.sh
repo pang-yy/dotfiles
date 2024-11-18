@@ -12,7 +12,7 @@ NC="\033[0m"
 CURRENT_DIR=$(cd "$(dirname "$0")" && pwd)
 
 LINUX_PACKAGES=("build-essential" "software-properties-common")
-COMMON_PACKAGES=("gcc" "cmake" "ninja-build" "gettext" "unzip" "curl")
+COMMON_PACKAGES=("gcc" "cmake" "clang" "ninja-build" "gettext" "unzip" "curl")
 PROG_LANG=("python3" "python3-launchpadlib" "lua5.4" "liblua5.4-dev")
 USEFUL_TOOLS=("tmux" "git" "vim" "vim-gui-common" "vim-runtime" "fzf" "ripgrep" "fd-find")
 INFOSEC_TOOLS=("gdb")
